@@ -23,13 +23,15 @@ int main()
 {
     int option = 0;
     int largo;
+    int id=1000;
+    int added;
     LinkedList* listaEmpleados = ll_newLinkedList();//Crea una lista en memoria
 
     //printf("1. Cargar");
 
     do{
             system("cls");
-            printf("1. Cargar\n2.Añadir empleado\n3.Largo\n4.Listar\n5.Ordenar\n\n");
+            printf("1. Cargar\n2.Añadir empleado\n3.Largo\n4.Listar\n5.Ordenar\n6.Baja\n7.Editar\n");
             scanf("%d" ,&option);
         switch(option)
         {
@@ -41,7 +43,12 @@ int main()
                 break;
 
             case 2:
-                controller_addEmployee(listaEmpleados);
+
+                added=controller_addEmployee(listaEmpleados,id);
+                if(added==0)
+                {
+                    id++;
+                }
                 break;
 
             case 3:
@@ -63,9 +70,11 @@ int main()
                 break;
 
             case 6:
+                controller_removeEmployee(listaEmpleados);
                 break;
 
             case 7:
+                controller_editEmployee(listaEmpleados);
                 break;
 
             case 8:

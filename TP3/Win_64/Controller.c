@@ -3,6 +3,7 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
+#include "Controller.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -72,16 +73,16 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_addEmployee(LinkedList* pArrayListEmployee)
+int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
 {
     Employee *emp;
-    int auxId;
-    char id[4096];
+    //int auxId;
+    char auxId[4096];
     char nombre[4096];
     char horasTrabajadas[4096];
     char sueldo[4096];
     int retorno=-1;
-    int largo;
+   // int largo;
 
     printf("Ingrese nombre : ");
     scanf("%s",nombre);
@@ -91,15 +92,17 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     scanf("%s" ,sueldo);
 
 
-    largo=ll_len(pArrayListEmployee);
-    auxId=largo+1;
+    //largo=ll_len(pArrayListEmployee);
+   // auxId=largo+1;
 
-    sprintf(id,"%d",auxId);
+    id++;
+    sprintf(auxId,"%d",id);
 
     //HACER UN PRINTF DE LOS DATOS Y UNA CONFIRMACION
 
 
-    emp=employee_newParametros(id,nombre,horasTrabajadas,sueldo);
+
+    emp=employee_newParametros(auxId,nombre,horasTrabajadas,sueldo);
 
     if(emp!=NULL)
     {
@@ -119,6 +122,31 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
+    Employee* emp;
+    int auxID;
+    char nombre[128];
+    int horasTrabajadas;
+    int sueldo;
+
+    printf("Ingrese el ID del empleado a editar : ");
+    scanf("%d", &auxID);
+
+    emp=ll_get(pArrayListEmployee,auxID-1);
+
+    employee_printEmployee(emp);
+
+    printf("Ingrese nombre : ");
+    scanf("%s",nombre);
+    printf("\nIngrese horas trabajadas : ");
+    scanf("%d",&horasTrabajadas);
+    printf("\nIngrese sueldo : ");
+    scanf("%d" ,&sueldo);
+
+    employee_setNombre(emp,nombre);
+    employee_setHorasTrabajadas(emp,horasTrabajadas);
+    employee_setSueldo(emp,sueldo);
+
+    employee_printEmployee(emp);
 
     return 1;
 }
@@ -132,6 +160,18 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+    Employee* emp;
+    int auxID;
+    //controller_ListEmployee(pArrayListEmployee);
+    system("cls");
+    printf("Ingrese el ID del empleado a dar de baja : ");
+    scanf("%d", &auxID);
+
+    emp=ll_get(pArrayListEmployee,auxID-1);
+
+    employee_printEmployee(emp);
+
+    ll_remove(pArrayListEmployee,auxID-1);
     return 1;
 }
 
@@ -194,9 +234,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    //ll_sort(pArrayListEmployee,compareName,0); //1 para ascendente. 0 para descendente
-    //ll_sort(pArrayListEmployee,compareHorasTrabajadas,0); //1 para ascendente. 0 para descendente
-    ll_sort(pArrayListEmployee,compareSueldo,0); //1 para ascendente. 0 para descendente
+    //ll_sort(pArrayListEmployee,employee_compareName,0); //1 para ascendente. 0 para descendente
+    //ll_sort(pArrayListEmployee,employee_compareHorasTrabajadas,0); //1 para ascendente. 0 para descendente
+    ll_sort(pArrayListEmployee,employee_compareSueldo,0); //1 para ascendente. 0 para descendente
 
 
     return 1;

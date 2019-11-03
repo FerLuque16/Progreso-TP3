@@ -158,7 +158,7 @@ int employee_getSueldo(Employee* this,int* sueldo)
         return retorno;
     }
 
-int compareName(void* arg1,void* arg2)
+int employee_compareName(void* arg1,void* arg2)
 {
     Employee* emp1;
     Employee* emp2;
@@ -170,7 +170,7 @@ int compareName(void* arg1,void* arg2)
 
 }
 
-int compareHorasTrabajadas(void* arg1, void* arg2)
+int employee_compareHorasTrabajadas(void* arg1, void* arg2)
 {
     int retorno=-1;
     Employee* emp1;
@@ -192,7 +192,7 @@ int compareHorasTrabajadas(void* arg1, void* arg2)
     return retorno;
 }
 
-int compareSueldo(void* arg1, void* arg2)
+int employee_compareSueldo(void* arg1, void* arg2)
 {
     int retorno=-1;
     Employee* emp1;
@@ -212,6 +212,23 @@ int compareSueldo(void* arg1, void* arg2)
 
     return retorno;
 
+}
+
+void employee_printEmployee(Employee* this)
+{
+    int id;
+    char nombre[128];
+    int horasTrabajadas;
+    int sueldo;
+
+    employee_getId(this,&id);
+    employee_getNombre(this,nombre);
+    employee_getHorasTrabajadas(this,&horasTrabajadas);
+    employee_getSueldo(this,&sueldo);
+
+    printf("%5s %10s %10s %10s\n" ,"ID","NOMBRE","HORAS","SUELDO");
+    printf("\n%5d %10s %10d %10d\n" ,id,nombre,horasTrabajadas,sueldo);
+    system("pause");
 }
 
 
