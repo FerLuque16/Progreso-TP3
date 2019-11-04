@@ -3,6 +3,8 @@
 #include "LinkedList.h"
 #include "Controller.h"
 #include "Employee.h"
+#include "utn.h"
+#include "string.h"
 
 /****************************************************
     Menu:
@@ -25,6 +27,8 @@ int main()
     int largo;
     int id=1000;
     int added;
+    int numero;
+
     LinkedList* listaEmpleados = ll_newLinkedList();//Crea una lista en memoria
 
     //printf("1. Cargar");
@@ -58,14 +62,23 @@ int main()
                 break;
 
             case 4:
+                if(listaEmpleados!=NULL)
+                {
+
 
                 controller_ListEmployee(listaEmpleados);
                 system("pause");
+                }
+                else
+                {
+                    printf("No hay empleados cargados");
+                    system("pause");
+                }
                 break;
 
             case 5:
                 system("cls");
-                printf("Ordenando. Espere por favor");
+
                 controller_sortEmployee(listaEmpleados);
                 break;
 
@@ -78,12 +91,40 @@ int main()
                 break;
 
             case 8:
+                if(getInt(&numero,"Numero: ","ERROR",1,5,2)==0)
+                {
+                    printf("%d",numero);
+                    system("pause");
+                }
+                else
+                {
+                    printf("ERROR");
+                }
+
+                //employee_menuEdit(listaEmpleados);
+
                 break;
 
             case 9:
+                /*if(employee_confirmation(letras,"Ingrese si o no: ","ERROR",3)==0 && strcmp(letras,"si")==0)
+                {
+                    printf("%s",letras);
+                    system("pause");
+                }
+                else
+                {
+                    printf("Limite sobrepasado");
+                    system("pause");
+                }*/
+
                 break;
 
             case 10:
+                break;
+
+            default:
+                printf("Opcion no valida");
+                system("pause");
                 break;
         }
     }while(option != 10);

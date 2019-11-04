@@ -108,40 +108,56 @@
 
 1572309014 c:\users\daiana\desktop\clase 19\tp3\win_64\parser.h
 
-1572744378 source:c:\users\fer\desktop\tp3\tp3\win_64\employee.c
+1572843669 source:c:\users\fer\desktop\tp3\tp3\win_64\employee.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
+	"utn.h"
 
 1572680725 c:\users\fer\desktop\tp3\tp3\win_64\linkedlist.h
 
 1572739438 c:\users\fer\desktop\tp3\tp3\win_64\controller.h
 
-1572744404 c:\users\fer\desktop\tp3\tp3\win_64\employee.h
+1572843323 c:\users\fer\desktop\tp3\tp3\win_64\employee.h
 
-1572680725 source:c:\users\fer\desktop\tp3\tp3\win_64\parser.c
+1572815743 source:c:\users\fer\desktop\tp3\tp3\win_64\parser.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
+	"utn.h"
 
-1572745477 source:c:\users\fer\desktop\tp3\tp3\win_64\main.c
+1572843669 source:c:\users\fer\desktop\tp3\tp3\win_64\main.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Controller.h"
 	"Employee.h"
+	"utn.h"
+	"string.h"
 
-1572745402 source:c:\users\fer\desktop\tp3\tp3\win_64\controller.c
+1572843382 source:c:\users\fer\desktop\tp3\tp3\win_64\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
 	"Employee.h"
 	"parser.h"
 	"Controller.h"
+	"utn.h"
+	"string.h"
 
 1572680725 c:\users\fer\desktop\tp3\tp3\win_64\parser.h
+
+1572824703 c:\users\fer\desktop\tp3\tp3\win_64\utn.h
+
+1572842029 source:c:\users\fer\desktop\tp3\tp3\win_64\utn.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<time.h>
+	"utn.h"
 

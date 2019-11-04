@@ -27,7 +27,13 @@ int employee_getSueldo(Employee* this,int* sueldo);
 int employee_compareName(void* arg1,void* arg2);
 int employee_compareHorasTrabajadas(void* arg1, void* arg2);
 int employee_compareSueldo(void* arg1, void* arg2);
+int employee_compareId(void* arg1, void* arg2);
 
 void employee_printEmployee(Employee* this);
+
+int employee_menuEdit(Employee* this);
+int employee_confirmation(char* input,char message[],char eMessage[],int retry);
+int employee_findEmployeeById(LinkedList* pArrayListEmployee);
+int employee_SortMenu(LinkedList* pArrayListEmployee);
 
 #endif // employee_H_INCLUDED
