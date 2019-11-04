@@ -379,7 +379,6 @@ int employee_menuEdit(Employee* this)
 
     }while(option != 4);
 
-    //employee_printEmployee(auxEmp);
 
     return 0;
 
@@ -466,6 +465,7 @@ int employee_SortMenu(LinkedList* pArrayListEmployee)
     do
     {
         system("cls");
+        printf("------------------------MENU DE ORDENAMIENTO--------------------------\n\n");
         printf("1. Ordenar nombres de forma ascendente\n2. Ordenar nombres de forma descendente\n3. Ordenar por sueldo de mayor a menor\n"
                "4. Ordenar por sueldo de menor a mayor\n5. Ordenar por horas trabajadas de mayor a menor\n6. Ordenar por horas trabajadas de menor a mayor\n"
                "7. Ordenar por ID de mayor a menor\n8. Atras");

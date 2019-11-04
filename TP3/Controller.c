@@ -57,8 +57,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
 {
     Employee *emp;
-    //employee
-    //int auxId;
+
     char auxId[4096];
     char nombre[4096];
     char horasTrabajadas[4096];
@@ -67,18 +66,20 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
     int flag=0;
     int confirm;
     char rta[21];
-   // int largo;
+
 
     if(getString(nombre,"Ingresar nombre: ","DATOS NO VALIDOS",1,128,3)==0)
                 {
-                    printf("Se ha registrado el nombre correctamente");
+                    system("cls");
+                    printf("Se ha registrado el nombre correctamente\n\n");
                     system("pause");
                     flag++;
 
                 }
                 else
                 {
-                    printf("No se ha podido agregar al empleado");
+                    system("cls");
+                    printf("No se ha podido agregar al empleado\n\n");
                     system("pause");
                 }
     if(flag==1)
@@ -87,13 +88,15 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
 
         if(getStringNumeros(horasTrabajadas,"Ingrese las horas trabajadas: ","DATOS NO VALIDOS",1,128,3)==0)
                 {
-                    printf("Se han registrado las horas correctamente");
+                    system("cls");
+                    printf("Se han registrado las horas correctamente\n\n");
                     system("pause");
                     flag++;
                 }
                 else
                 {
-                    printf("No se ha podido agregar al empleado");
+                    system("cls");
+                    printf("No se ha podido agregar al empleado\n\n");
                     system("pause");
                 }
     }
@@ -102,13 +105,15 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
     {
         if(getStringNumeros(sueldo,"Ingrese el sueldo: ","DATOS NO VALIDOS",1,128,3)==0)
                 {
-                    printf("Se ha registrado el sueldo correctamente: ");
+                    system("cls");
+                    printf("Se ha registrado el sueldo correctamente\n\n");
                     system("pause");
                     flag++;
                 }
                 else
                 {
-                    printf("No se ha podido agregar al empleado");
+                    system("cls");
+                    printf("No se ha podido agregar al empleado\n\n");
                     system("pause");
 
                 }
@@ -121,11 +126,13 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
     id++;
     sprintf(auxId,"%d",id);
 
+    system("cls");
     printf("%5s %10s %10s %10s\n" ,"ID","NOMBRE","HORAS","SUELDO");
     printf("\n%5d %10s %10s %10s\n" ,id,nombre,horasTrabajadas,sueldo);
     system("pause");
 
     confirm=employee_confirmation(rta,"Desea dar de alta al empleado? Ingrese si o no: ","Respuesta no valida",3);
+
 
     if(confirm==0 && strcmp(rta,"si")==0)
     {
@@ -134,29 +141,29 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int id)
         if(emp!=NULL)
         {
             ll_add(pArrayListEmployee,emp);
+            system("cls");
+            printf("Se ha dado de alta al empleado correctamente\n\n");
+            system("pause");
             retorno=0;
+        }
+        else
+        {
+            system("cls");
+            printf("No se ha dado de alta al empleado porque ha ocurrido un error\n\n");
+            system("pause");
         }
     }
     else
     {
-        printf("No se ha dado de alta al empleado");
+        system("cls");
+        printf("No se ha dado de alta al empleado\n\n");
         system("pause");
     }
 
     }
 
 
-    //HACER UN PRINTF DE LOS DATOS Y UNA CONFIRMACION
 
-
-
-   /* emp=employee_newParametros(auxId,nombre,horasTrabajadas,sueldo);
-
-    if(emp!=NULL)
-    {
-        ll_add(pArrayListEmployee,emp);
-        retorno=0;
-    }*/
 
     return retorno;
 }
@@ -172,12 +179,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* emp;
     int auxID;
-    //char nombre[128];
-    //int horasTrabajadas;
-    //int sueldo;
 
-   /* printf("Ingrese el ID del empleado a editar : ");
-    scanf("%d", &auxID);*/
 
     auxID=employee_findEmployeeById(pArrayListEmployee);
     if(auxID!=-1)
@@ -190,25 +192,6 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     employee_menuEdit(emp);
     }
 
-
-
-    /*printf("Ingrese nombre : ");
-    scanf("%s",nombre);
-    printf("\nIngrese horas trabajadas : ");
-    scanf("%d",&horasTrabajadas);
-    printf("\nIngrese sueldo : ");
-    scanf("%d" ,&sueldo);
-
-    employee_setNombre(emp,nombre);
-    employee_setHorasTrabajadas(emp,horasTrabajadas);
-    employee_setSueldo(emp,sueldo);
-
-    employee_printEmployee(emp);*/
-    /*do
-    {
-
-    }while();
-    */
 
     return 1;
 }
@@ -224,18 +207,44 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
     Employee* emp;
     int auxID;
-    //controller_ListEmployee(pArrayListEmployee);
-   /* system("cls");
-    printf("Ingrese el ID del empleado a dar de baja : ");
-    scanf("%d", &auxID);*/
+    char rta[21];
+
     auxID=employee_findEmployeeById(pArrayListEmployee);
     if(auxID!=-1)
     {
-    emp=ll_get(pArrayListEmployee,auxID);
+        emp=ll_get(pArrayListEmployee,auxID);
+        if(emp!=NULL)
+        {
+            employee_printEmployee(emp);
 
-    employee_printEmployee(emp);
+            if(employee_confirmation(rta,"Desea dar de baja al empleado? Ingrese si o no","Respuesta incorrecta",3)==0 && strcmp(rta,"si")==0)
+            {
+                ll_remove(pArrayListEmployee,auxID);
+                printf("Se ha dado de baja al empleado correctamente");
+                system("pause");
+            }
+            else
+            {
+                system("cls");
+                printf("No se ha dado de baja");
+                system("pause");
+            }
+        }
+        else
+        {
+            system("cls");
+            printf("No se ha dado de baja porque ocurrio un error");
+            system("pause");
+        }
 
-    ll_remove(pArrayListEmployee,auxID);
+
+
+    }
+    else
+    {
+        system("cls");
+        printf("No se  ha dado de baja ya que no se ha encontrado al empleado");
+        system("pause");
     }
 
     return 1;
@@ -300,10 +309,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    //ll_sort(pArrayListEmployee,employee_compareName,0); //1 para ascendente. 0 para descendente
-    //ll_sort(pArrayListEmployee,employee_compareHorasTrabajadas,0); //1 para ascendente. 0 para descendente
-    //ll_sort(pArrayListEmployee,employee_compareSueldo,0); //1 para ascendente. 0 para descendente
-    //ll_sort(pArrayListEmployee,employee_compareId,0);
+
     employee_SortMenu(pArrayListEmployee);
 
 

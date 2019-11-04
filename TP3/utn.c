@@ -206,6 +206,7 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
     if(input!=NULL && message!=NULL && eMessage!=NULL && lowLimit<hiLimit && retry>=0)
     {
         do{
+        system("cls");
         printf("%s" ,message);
         setbuf(stdin,NULL);
         fgets(auxStr,sizeof(auxStr),stdin);
@@ -223,6 +224,7 @@ int getString(char* input,char message[],char eMessage[], int lowLimit, int hiLi
 
         if(strlen(auxStr)>=lowLimit && strlen(auxStr)<=hiLimit && flag==0)
             {
+                strlwr(auxStr);
                 auxStr[0]=toupper(auxStr[0]);
                 strcpy(input,auxStr);
                 retorno=0;
